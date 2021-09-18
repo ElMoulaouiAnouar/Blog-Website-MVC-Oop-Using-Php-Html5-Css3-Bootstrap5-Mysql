@@ -1,0 +1,61 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
+.fa-Bars{
+    font-size: 28px;
+}
+nav *{
+    color: black;
+    font-size: large;
+}
+nav{
+    min-height: 77px;
+}
+nav a:hover{
+    background-color: #ddd;
+    color:white;
+}
+nav div .no_hover{
+    background-color: white;
+}
+body{
+    background-color: rgb(238, 234, 234);
+}
+
+.categories{
+    width: 45%;
+    text-align: center;
+}
+
+.categories .card{
+    width: 280px;
+    margin: auto;
+    padding: 0;
+}
+
+.categories ul{
+    list-style: none;
+    text-align: left;
+}
+.categories ul li a{
+    text-decoration: none;
+    font-size: 22px;
+    font-family:'Roboto', sans-serif;
+    color:#333;
+    padding: 5px 0;
+}
+.categories ul li a:hover{
+    text-decoration: underline;
+}
+@media screen and (min-width:993px) {
+    #navbarNav{
+        display: flex;
+        justify-content: space-between;
+    }
+}
+@media screen and (max-width:993px) {
+   .categories{
+       display: none;
+   }
+}
+
+
+

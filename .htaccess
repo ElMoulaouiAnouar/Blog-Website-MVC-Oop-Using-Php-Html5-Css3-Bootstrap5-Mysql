@@ -1,0 +1,4 @@
+Options -Indexes
+RewriteEngine On
+RewriteBase /php_tutorial/MyBlog_using_php/
+RewriteRule ^(.*)$ public/$1
