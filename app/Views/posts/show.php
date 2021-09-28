@@ -47,8 +47,8 @@ if(isset($_POST['btn_addComment'])){
                         Published in : <?php echo $data->date_update_post ?>
                         </div>
                         
-                        <div>
-                            <i class="fa fa-eye"></i>10 View
+                        <div style="font-size: 25px;">
+                            <i class="fa fa-eye" style="color: blue;margin-right: 5px;"></i><?php echo $data->total_view ?>
                         </div>
 
                     </div>
@@ -90,9 +90,16 @@ if(isset($_POST['btn_addComment'])){
                                                     <div class="d-flex justify-content-between">
                                                         <h5 class="card-title"><?php echo $comment->name ?> <span style="color: blue;margin-left:4px;"><?php echo $comment->date_update_comment ?></span></h5>
                                                         <div class="d-flex">
-                                                            <a href="#" class="btn btn-sm btn-warning m-1">Edit</a>
-                                                            <a href="<?php echo BASE_URL.'comment/destroy/'.$comment->id_comment.'/'.$data->id_post ?>" class="btn btn-sm btn-danger m-1">Delete</a>
-                                                        </div>
+                                                            <!-- check comment if created by user current -->
+                                                            <?php
+                                                            if(isset($_SESSION['user_id'])){
+                                                                if($comment->id_user == $_SESSION['user_id']){ ?>
+                                                                    <a href="#" class="btn btn-sm btn-warning m-1"><i class="fa fa-edit"></i></a>
+                                                                    <a href="<?php echo BASE_URL.'comment/destroy/'.$comment->id_comment.'/'.$data->id_post ?>" class="btn btn-sm btn-danger m-1"><i class="fa fa-trash"></i></a>
+                                                            <?php } 
+                                                                }?>
+
+                                                       </div>
                                                     </div>
                                                     <p class="card-text"><?php echo $comment->comment_description ?></p>
                                                 </div>

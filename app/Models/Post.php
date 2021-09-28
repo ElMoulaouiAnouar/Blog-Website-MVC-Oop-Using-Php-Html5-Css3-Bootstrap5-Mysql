@@ -24,11 +24,14 @@ class Post{
     
 
     public function findPost($id_post){
-        $this->db->Query("select posts.id_post,title,description,date_update_post,url_photo from photos INNER JOIN posts on posts.id_photo=photos.id_photo where posts.id_post like :id_post");
+        $this->db->Query("select posts.id_post,title,description,date_update_post,url_photo,total_view from photos INNER JOIN posts on posts.id_photo=photos.id_photo where posts.id_post like :id_post");
         return $this->db->single(['id_post' => $id_post]);
     }
     
-
+    public function IcrementColumnTotalView($id_post){
+        $this->db->query("update posts set total_view=total_view+1 where id_post=:id_post");
+        $this->db->Execute(["id_post"=>$id_post]);
+    }
 
 }
 

@@ -37,4 +37,9 @@ class Comment{
         $this->db->Execute(['id_comment'=>$id_comment]);
     }
 
+    public function singleComment($id_comment){
+        $this->db->query("select * from comments where id_comment=:id_comment");
+        return $this->db->Single(["id_comment"=>$id_comment]);
+    }
+
 }

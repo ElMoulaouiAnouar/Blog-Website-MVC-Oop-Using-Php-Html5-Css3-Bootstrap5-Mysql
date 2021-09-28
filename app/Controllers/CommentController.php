@@ -29,7 +29,14 @@ class CommentController extends Controller{
     }
 
     public function destroy($id_comment,$id_post){
-        $this->comment_model->delete($id_comment);
+        $comment = $this->comment_model->singleComment($id_comment);
+        if($comment){
+            if($_SESSION['user_id']){
+                if($comment->id_user == $_SESSION['user_id']){
+                    $this->comment_model->delete($id_comment);
+                }
+            }
+        } 
         header("location: ".BASE_URL.'post/show/'.$id_post);
     }
 

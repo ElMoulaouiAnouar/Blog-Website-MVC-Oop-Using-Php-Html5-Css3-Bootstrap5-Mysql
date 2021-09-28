@@ -26,6 +26,10 @@ class PostController extends Controller{
     }
 
     public function show($id_post){
+        if(!isset($_SESSION['current_user'])){
+            $_SESSION['current_user'] = 'true';
+            $this->post_model->IcrementColumnTotalView($id_post);
+        }
         $data = $this->post_model->findPost($id_post);
         $this->view('posts/show',$data);
     }
