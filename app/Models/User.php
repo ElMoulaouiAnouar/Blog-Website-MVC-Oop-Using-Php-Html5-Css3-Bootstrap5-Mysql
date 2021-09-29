@@ -15,7 +15,8 @@ class User{
 
     public function insert($data){
         $this->db->Query("insert into users(name,email,pass,id_photo,type_user) values(:name,:email,:pass,1,:type)");
-        if($this->db->Execute(["name" => $data['name'],'email' => $data['email'],'pass' => $data['password'],'type' => 'user'])){
+        $pass = password_hash($data['password'],PASSWORD_DEFAULT);
+        if($this->db->Execute(["name" => $data['name'],'email' => $data['email'],'pass' => $pass,'type' => 'user'])){
             return true;
         }
         else{
@@ -30,8 +31,17 @@ class User{
     }
 
     public function verfierLogin($email,$password){
-        $this->db->query("select * from users where email like :email and pass like :password");
-        return $this->db->single(['email' => $email,'password' => $password]);
+        // $this->db->query("select * from users where email like :email and pass like :password");
+        // return $this->db->single(['email' => $email,'password' => $password]);
+
+        $this->db->query("select * from users where email like :email");
+        $user =  $this->db->single(['email' => $email]);
+        if(password_verify($password,$user->pass)){
+            return $user;
+        }
+        else{
+            return false;
+        }
     }
 
 }

@@ -54,7 +54,7 @@ class UserController extends Controller{
         }
         else{
             session::Set("faild",'email or password inccorrect');
-            redirect::To("user/login");
+            //header("location: ".BASE_URL.'user/login');
         }
 
     }   

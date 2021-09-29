@@ -9,13 +9,14 @@ class Comment{
     }
 
     public function Add($data){
-        $this->db->Query("insert into comments(id_user,id_post,comment_description,status_comment,date_update_comment) values(:id_user,:id_post,:comment,:status,:date)");
+        // $this->db->Query("insert into comments(id_user,id_post,comment_description,status_comment,date_update_comment) values(:id_user,:id_post,:comment,:status,:date)");
+        $this->db->Query("insert into comments(id_user,id_post,comment_description,status_comment) values(:id_user,:id_post,:comment,:status)");
         if($this->db->Execute([
             'id_user' => $data['id_user'],
             'id_post' => $data['id_post'],
             'comment' => $data['comment'],
             'status' => $data['status'],
-            'date' => $data['date']
+            //'date' => $data['date']
         ])){
             return true;
         }

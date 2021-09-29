@@ -13,7 +13,7 @@
                         <div class="card-body">
                             <h5 class="card-title"><?php echo $post->title ?></h5>
                             <p class="card-text"><?php echo HelpersFunction::CutText($post->description,180); ?></p>
-                            <p class="card-text"><small class="text-muted"><?php echo $post->date_update_post ?></small></p>
+                            <p class="card-text"><small class="text-muted"><?php echo timeAgo::ConvertToAgo($post->date_update_post)?></small></p>
                         </div>
                         </div>
                     </div>

@@ -13,7 +13,8 @@ if(isset($_POST['btn_addComment'])){
         $commentData['id_user'] = $_SESSION['user_id'];
         $commentData['id_post'] = $data->id_post;
         $commentData['status'] = 'attende';
-        $commentData['date'] = date('Y/m/d H:i:s');
+        // $commentData['date'] = date('Y/m/d H:i:s');
+        //$commentData['date'] = 'NOW()';
 
         (new CommentController())->create($commentData);
     }
@@ -44,7 +45,7 @@ if(isset($_POST['btn_addComment'])){
                     </div>
                     <div class="d-flex justify-content-between">
                         <div class="badge bg-success p-2">
-                        Published in : <?php echo $data->date_update_post ?>
+                        Published in : <?php echo timeAgo::ConvertToAgo($data->date_update_post)?>
                         </div>
                         
                         <div style="font-size: 25px;">
@@ -88,7 +89,7 @@ if(isset($_POST['btn_addComment'])){
                                             <div class="card bg-light" style="width: 100%;margin-left:8px">
                                                 <div class="card-body">
                                                     <div class="d-flex justify-content-between">
-                                                        <h5 class="card-title"><?php echo $comment->name ?> <span style="color: blue;margin-left:4px;"><?php echo $comment->date_update_comment ?></span></h5>
+                                                        <h5 class="card-title"><?php echo $comment->name ?> <span style="color: blue;margin-left:4px;font-size:17px;"><?php echo timeAgo::ConvertToAgo($comment->date_update_comment) ?></span></h5>
                                                         <div class="d-flex">
                                                             <!-- check comment if created by user current -->
                                                             <?php
