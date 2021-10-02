@@ -40,6 +40,15 @@ class CommentController extends Controller{
         header("location: ".BASE_URL.'post/show/'.$id_post);
     }
 
+    public function updateComment($data){
+        if($this->comment_model->update($data)){
+            session::set("success",'update comment success');
+        }
+        else{
+            session::set("success",'update comment success');
+        }
+        header('Location: ' . $_SERVER['HTTP_REFERER']);
+    }
     
 
 }

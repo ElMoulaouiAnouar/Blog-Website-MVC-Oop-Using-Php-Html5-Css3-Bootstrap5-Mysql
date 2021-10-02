@@ -17,9 +17,18 @@ if(isset($_POST['btn_addComment'])){
         //$commentData['date'] = 'NOW()';
 
         (new CommentController())->create($commentData);
-    }
-   
-}?>
+    }  
+}
+
+if(isset($_POST['btn_update'])){
+    $data = [
+        'comment_des' => Filters::FilterInput($_POST['Editcomment']) ,
+        'id_comment' => Filters::FilterInput($_POST['id_comment']) 
+    ];
+    (new CommentController())->updateComment($data);
+}
+
+?>
  
 
 <div class="container">
@@ -95,7 +104,7 @@ if(isset($_POST['btn_addComment'])){
                                                             <?php
                                                             if(isset($_SESSION['user_id'])){
                                                                 if($comment->id_user == $_SESSION['user_id']){ ?>
-                                                                    <a href="#" class="btn btn-sm btn-warning m-1"><i class="fa fa-edit"></i></a>
+                                                                    <a id="<?php echo $comment->id_comment ?>" class="btn btn-sm btn-warning m-1 btn-edit"><i class="fa fa-edit"></i></a>
                                                                     <a href="<?php echo BASE_URL.'comment/destroy/'.$comment->id_comment.'/'.$data->id_post ?>" class="btn btn-sm btn-danger m-1"><i class="fa fa-trash"></i></a>
                                                             <?php } 
                                                                 }?>
@@ -118,3 +127,4 @@ if(isset($_POST['btn_addComment'])){
         </div>
     </div>
 </div>
+

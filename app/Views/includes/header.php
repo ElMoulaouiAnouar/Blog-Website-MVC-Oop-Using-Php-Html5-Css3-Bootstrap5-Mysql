@@ -31,9 +31,15 @@
                 <li>
                     <a href="#" class="nav-link">About</a>
                 </li>
+                <?php
+                if(isset($_SESSION['user_email'])){?>
+                    <li>
+                    <a class="nav-link" href="">Dashboard</a>
+                    </li>
+               <?php }?>
             </ul>
 
-            <ul class="navbar-nav">
+            <ul class="navbar-nav d-flex align-items-center">
 
                 <?php
                 if(!isset($_SESSION['user_email'])){?>
@@ -52,8 +58,26 @@
                     <a href="<?php echo BASE_URL.'user/logout' ?>" class="nav-link">LogOut</a>
                 </li>
 
+              
+                <div class="btn-group dropstart dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <?php $path_img = '../img/default.png' ; 
+                        if(HelpersFunction::getCurrentMethod() != 'index'){
+                            $path_img = '../../img/default.png' ; 
+                        }
+                        ?>
+                        <img src="<?php echo $path_img ?>" style="border-radius: 50%;" width="40" height="40" alt="" class="dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                    </a>
+                    <ul class="dropdown-menu">
+                        <!-- Dropdown menu links -->
+                        <li><a class="dropdown-item" href="">Edit Profil </a></li>
+                        <li><a class="dropdown-item" href="">Change Password</a></li>
+                    </ul>
+                </div>
+
                 <?php }?>
             </ul>
             </div>
         </div>
 </nav>
+

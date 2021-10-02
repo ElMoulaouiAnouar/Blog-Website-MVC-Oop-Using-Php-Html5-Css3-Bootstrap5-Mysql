@@ -33,4 +33,21 @@ class HelpersFunction{
         return $nv_value;
     }
 
+    //get current method from url (index or show or ...)
+   static function getCurrentMethod(){
+      $url =  $_SERVER['REQUEST_URI'];
+      $url = explode('/',$url);
+      return HelpersFunction::getValueNotNumber($url,count($url));
+    }
+    
+    static function getValueNotNumber($array_value,$count){
+        --$count;
+        if(!is_numeric($array_value[$count])){
+            return $array_value[$count];
+        }
+        else{
+            return HelpersFunction::getValueNotNumber($array_value,$count);
+        }
+    }
+
 }

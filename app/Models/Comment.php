@@ -43,4 +43,13 @@ class Comment{
         return $this->db->Single(["id_comment"=>$id_comment]);
     }
 
+    public function update($data){
+        $this->db->Query("update comments set comment_description = :comment_des where id_comment=:id_comment");
+        if($this->db->Execute([
+          'comment_des' => $data['comment_des'],
+          'id_comment' => $data['id_comment']
+        ])){
+            return true;
+        }
+    }
 }

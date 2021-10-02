@@ -3,7 +3,7 @@
     <div>
         <!-- begin posts informations -->
         <?php foreach($data['posts'] as $post): ?>
-            <a href="<?php echo BASE_URL.'/post/show/'.$post->id_post ?>" style="color:black;text-decoration: none;">
+            <a href="<?php echo BASE_URL.'post/show/'.$post->id_post ?>" style="color:black;text-decoration: none;">
                 <div class="card mb-3" style="width: 800px;">
                     <div class="row g-0">
                         <div class="col-md-4">
@@ -44,4 +44,3 @@
 
 </div>
 </div>
-
